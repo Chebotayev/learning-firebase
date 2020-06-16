@@ -7,16 +7,22 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-
+import * as firebase from 'firebase';
 // ROUTER
 import { routes } from './routes';
 
 // COMPONENTS
-import Root from './components/SignIn';
+import Root from './components/Root';
 import Home from './components/Home';
+import SignUp from './components/SignUp';
 
 // REDUX
 import { userSelectors } from './redux/selectors';
+
+// UTILS
+import firebaseConfig from './firebase.config';
+
+firebase.initializeApp(firebaseConfig);
 
 const App = () => {
   const isLogged = useSelector(userSelectors.selectUser);
@@ -34,6 +40,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path={routes.root} component={Root} />
+        <Route path={routes.signUp} component={SignUp} />
         <Route path="*" render={() => <Redirect to={routes.root} />} />
       </Switch>
     </Router>

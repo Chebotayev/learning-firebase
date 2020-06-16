@@ -5,5 +5,6 @@ export default function* rootSaga() {
   yield all([
     // USER
     userSagas.loginWatcher(),
+    userSagas.signUpWatcher(),
   ]);
 }
